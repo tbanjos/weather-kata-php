@@ -4,7 +4,7 @@ namespace Codium\CleanCode;
 
 use GuzzleHttp\Client;
 
-class MetaWeather implements WeatherApiClientInterface {
+class MetaWeatherProvider implements WeatherDataProvider {
 
     const BASE_URL = 'https://www.metaweather.com/api/';
     private $httpClient;
@@ -27,7 +27,7 @@ class MetaWeather implements WeatherApiClientInterface {
         return $responseArray;
     }
 
-    public function getCity($city)
+    public function getCityId($city)
     {
         return $this->get("location/search/?query=$city")[0]['woeid'];
     }

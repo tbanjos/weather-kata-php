@@ -13,7 +13,7 @@ class WeatherTest extends TestCase
 
     protected function setUp()
     {
-        $this->forecast = new Forecast(new MetaWeather());
+        $this->forecast = new CityWeatherForecast(new MetaWeatherProvider());
     }
 
     // https://www.metaweather.com/api/location/766273/

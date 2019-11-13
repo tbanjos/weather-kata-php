@@ -3,19 +3,19 @@
 namespace Codium\CleanCode;
 
 use GuzzleHttp\Client;
-use Codium\CleanCode\WeatherApiClientInterface;
+use Codium\CleanCode\WeatherDataProvider;
 
 
-class Forecast
+class CityWeatherForecast
 {
     const MAX_DATE_PREDICTIONS = "+6 days 00:00:00";
     const VALID_DATE_FORMAT = 'Y-m-d';
     const EMPTY_STRING = "";
     
-    /** @var WeatherApiClientInterface $apiClient */
+    /** @var WeatherDataProvider $apiClient */
     private $apiClient;
 
-    function __construct(WeatherApiClientInterface $apiClient){
+    function __construct(WeatherDataProvider $apiClient){
         $this->apiClient = $apiClient;
     }
 
@@ -32,7 +32,7 @@ class Forecast
         }
 
         // Find the id of the city on metawheather
-        $city = $this->apiClient->getCity($city);
+        $city = $this->apiClient->getCityId($city);
 
         // Find the predictions for the city
         $results = $this->apiClient->getWeatherData($city);
