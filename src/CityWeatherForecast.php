@@ -31,7 +31,7 @@ class CityWeatherForecast
 
         // Find the id of the city on metawheather
         $cityId = $this->apiClient->getCityId($city);
-        $city = $cityId;
+        $city = $cityId->value();
         // Find the predictions for the city
         $results = $this->apiClient->getWeatherData($cityId);
 
