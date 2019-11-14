@@ -2,6 +2,7 @@
 
 namespace Codium\CleanCode;
 
+use Codium\CleanCode\Domain\CityId;
 use GuzzleHttp\Client;
 
 class MetaWeatherProvider implements WeatherDataProvider {
@@ -27,14 +28,14 @@ class MetaWeatherProvider implements WeatherDataProvider {
         return $responseArray;
     }
 
-    public function getCityId($city)
+    public function getCityId($city): CityId
     {
-        return $this->get("location/search/?query=$city")[0]['woeid'];
+        $woeid = $this->get("location/search/?query=$city")[0]['woeid'];
+        return new CityId($woeid);
     }
 
-    public function getWeatherData($woeid)
+    public function getWeatherData(CityId $cityId)
     {
-        return $this->get("location/$woeid")['consolidated_weather'];
+        return $this->get("location/".$cityId->value())['consolidated_weather'];
     }
-
 }

@@ -1,9 +1,11 @@
 <?php
 namespace Codium\CleanCode;
 
-interface WeatherApiClientInterface {
+use Codium\CleanCode\Domain\CityId;
 
-    public function getCity($city);
-    public function getWeatherData($woeid);
+interface WeatherDataProvider {
+
+    public function getCityId($city): CityId;
+    public function getWeatherData(CityId $cityId);
 
 }

@@ -2,10 +2,9 @@
 
 namespace Tests\Codium\CleanCode;
 
-use Codium\CleanCode\Forecast;
+use Codium\CleanCode\CityWeatherForecast;
+use Codium\CleanCode\MetaWeatherProvider;
 use PHPUnit\Framework\TestCase;
-
-use Codium\CleanCode\MetaWeather;
 
 class WeatherTest extends TestCase
 {
