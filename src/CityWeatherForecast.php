@@ -19,7 +19,7 @@ class CityWeatherForecast
         $this->apiClient = $apiClient;
     }
 
-    public function predict(string $city, DateTime $datetime = null, bool $wind = false): string
+    public function predict(string &$city, DateTime $datetime = null, bool $wind = false): string
     {
         // When date is not provided we look for the current prediction
         if (!$datetime)
@@ -31,7 +31,7 @@ class CityWeatherForecast
 
         // Find the id of the city on metawheather
         $cityId = $this->apiClient->getCityId($city);
-
+        $city = $cityId;
         // Find the predictions for the city
         $results = $this->apiClient->getWeatherData($cityId);
 
